@@ -1,7 +1,7 @@
 {
   "name": "react-ad-manager",
   "version": "0.1.0",
-  "description": "Gpt library for react",
+  "description": "A React component for Google Ad Manager",
   "author": "Armando Tomazzoni Junior",
   "license": "MIT",
   "repository": "tomattone/react-ad-manager",
