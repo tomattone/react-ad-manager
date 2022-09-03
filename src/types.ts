@@ -24,11 +24,17 @@ export type AdType = {
   size?: AdSizeType
   target?: TargetArrayType
   type?: 'INTERSTITIAL' | 'TOP_ANCHOR' | 'BOTTOM_ANCHOR'
+  refreshTimer?: number | string
+  eventImpressionViewable?: any
+  eventSlotOnload?: any
+  eventSlotRenderEnded?: any
+  eventSlotRequested?: any
+  eventSlotResponseReceived?: any
+  eventSlotVisibilityChanged?: any
 }
 
 export type AdConfigType = {
   networkCode?: number | string
-  refreshTimer?: number | string
   target?: TargetArrayType
   enableLazyLoad?: boolean | 'true'
   enableSingleRequest?: boolean | 'true'

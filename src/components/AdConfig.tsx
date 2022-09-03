@@ -1,14 +1,8 @@
 import React, { useEffect } from 'react'
-import {
-  impressionViewable,
-  pushAdSlotToRefresh,
-  refreshViewPercentage,
-} from '../refresh'
 import { AdConfigType } from '../types'
 import * as variables from '../variables'
 export const AdConfig: React.FC<AdConfigType> = ({
   networkCode,
-  refreshTimer,
   target = [],
   enableLazyLoad,
   enableSingleRequest,
@@ -24,7 +18,6 @@ export const AdConfig: React.FC<AdConfigType> = ({
 
   const setConfigs = () => {
     if (networkCode) variables.networkCode.set(networkCode)
-    if (refreshTimer) variables.refreshTimer.set(refreshTimer)
     if (enableLazyLoad) googletag.pubads().enableLazyLoad(enableLazyLoad)
     if (collapseEmptyDivs) googletag.pubads().collapseEmptyDivs(true)
     if (enableSingleRequest) googletag.pubads().enableSingleRequest()
@@ -37,20 +30,16 @@ export const AdConfig: React.FC<AdConfigType> = ({
   const setEvents = () => {
     googletag.pubads().addEventListener('slotOnload', (event: any) => {
       if (eventSlotOnload) eventSlotOnload(event)
-      if (refreshTimer)
-        pushAdSlotToRefresh(event.slot, googletag, Number(refreshTimer))
     })
 
     googletag
       .pubads()
       .addEventListener('slotVisibilityChanged', (event: any) => {
         if (eventSlotVisibilityChanged) eventSlotVisibilityChanged(event)
-        if (refreshTimer) refreshViewPercentage(event)
       })
 
     googletag.pubads().addEventListener('impressionViewable', (event: any) => {
       if (eventImpressionViewable) eventImpressionViewable(event)
-      if (refreshTimer) impressionViewable(event)
     })
 
     if (eventSlotRenderEnded)

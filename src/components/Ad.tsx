@@ -1,18 +1,41 @@
 import React, { useEffect } from 'react'
+import {
+  impressionViewable,
+  pushAdSlotToRefresh,
+  refreshViewPercentage,
+} from '../refresh'
 import { AdType, ResponsiveSizeType } from '../types'
-import { networkCode } from '../variables'
+import * as variables from '../variables'
 
 // eslint-disable-next-line react/prop-types
-const Ad: React.FC<AdType> = ({ adUnit, name, target = [], type, size }) => {
+const Ad: React.FC<AdType> = ({
+  adUnit,
+  name,
+  target = [],
+  type,
+  size,
+  refreshTimer = 0,
+  eventImpressionViewable,
+  eventSlotOnload,
+  eventSlotRenderEnded,
+  eventSlotRequested,
+  eventSlotResponseReceived,
+  eventSlotVisibilityChanged,
+}) => {
   let googletag: any
   let adSlot: any = null
 
   const displayCommonAd = () => {
     googletag.cmd.push(() => {
       adSlot = googletag
-        .defineSlot(`${networkCode.get()}/${adUnit}`, generateSize(), name)
+        .defineSlot(
+          `${variables.networkCode.get()}${adUnit}`,
+          generateSize(),
+          name
+        )
         .addService(googletag.pubads())
       mappingSize()
+      setEvents(adSlot)
       setTargeting()
       googletag.enableServices()
       googletag.display(name)
@@ -22,13 +45,53 @@ const Ad: React.FC<AdType> = ({ adUnit, name, target = [], type, size }) => {
   const displayEspecialAd = () => {
     googletag.cmd.push(() => {
       adSlot = googletag.defineOutOfPageSlot(
-        `${networkCode.get()}/${adUnit}`,
+        `${variables.networkCode.get()}${adUnit}`,
         googletag.enums.OutOfPageFormat[type]
       )
-      if (!adSlot) return
-      setTargeting()
-      adSlot.addService(googletag.pubads())
+      if (adSlot) {
+        adSlot.setTargeting('type', type)
+        adSlot.addService(googletag.pubads())
+        googletag.pubads().enableSingleRequest()
+        googletag.enableServices()
+      }
     })
+  }
+
+  const setEvents = (targetSlot: any) => {
+    googletag.pubads().addEventListener('slotOnload', (event: any) => {
+      if (event.slot === targetSlot) {
+        if (eventSlotOnload) eventSlotOnload(event)
+        if (refreshTimer)
+          pushAdSlotToRefresh(event.slot, googletag, Number(refreshTimer))
+      }
+    })
+
+    googletag
+      .pubads()
+      .addEventListener('slotVisibilityChanged', (event: any) => {
+        if (event.slot === targetSlot) {
+          if (eventSlotVisibilityChanged) eventSlotVisibilityChanged(event)
+          if (refreshTimer) refreshViewPercentage(event)
+        }
+      })
+
+    googletag.pubads().addEventListener('impressionViewable', (event: any) => {
+      if (event.slot === targetSlot) {
+        if (eventImpressionViewable) eventImpressionViewable(event)
+        if (refreshTimer) impressionViewable(event)
+      }
+    })
+
+    if (eventSlotRenderEnded)
+      googletag
+        .pubads()
+        .addEventListener('slotRenderEnded', eventSlotRenderEnded)
+    if (eventSlotRequested)
+      googletag.pubads().addEventListener('slotRequested', eventSlotRequested)
+    if (eventSlotResponseReceived)
+      googletag
+        .pubads()
+        .addEventListener('slotResponseReceived', eventSlotResponseReceived)
   }
 
   const setTargeting = () => {
@@ -44,14 +107,8 @@ const Ad: React.FC<AdType> = ({ adUnit, name, target = [], type, size }) => {
       )
     )
       return size
-    return internalSize.reduce((uniqueSizes: any, elSize: any) => {
-      const haveSize = !!uniqueSizes.find(
-        (mapSize: [number, number]) =>
-          mapSize[0] === elSize[0] && mapSize[0] === elSize[0]
-      )
-      if (haveSize) uniqueSizes.push(haveSize)
-      return uniqueSizes
-    }, [])
+
+    return size[0][1]
   }
 
   const mappingSize = () => {
@@ -64,7 +121,7 @@ const Ad: React.FC<AdType> = ({ adUnit, name, target = [], type, size }) => {
     )
       return
     let mapping = googletag.sizeMapping()
-    internalSize.forEach((el) => (mapping = mapping.addSize(el)))
+    internalSize.forEach((el) => (mapping = mapping.addSize(el[0], el[1])))
     mapping = mapping.build()
     adSlot.defineSizeMapping(mapping)
   }
@@ -80,7 +137,9 @@ const Ad: React.FC<AdType> = ({ adUnit, name, target = [], type, size }) => {
 
   useEffect(() => {
     return () => {
-      googletag.destroySlots([adSlot])
+      if (adSlot) {
+        googletag.destroySlots([adSlot])
+      }
     }
   }, [])
 
