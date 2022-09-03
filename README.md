@@ -2,7 +2,7 @@
 
 ![react-ad-manager](https://user-images.githubusercontent.com/2035911/188284142-9d9ae304-0280-46f2-99f9-1d2fc3d0222a.png)
 
-A React component for Google Ad Manager, created to serve Ads on the [Jovem Nerd](https://jovemnerd.com.br) website.
+A React component for Google Ad Manager, created to serve Ads on the [🖖🏻 Jovem Nerd website](https://jovemnerd.com.br).
 
 <br />
 
@@ -72,6 +72,7 @@ then, create the Ad component for define ad slot
         ]}
         target={[['color', 'red']]}
         refreshTimer={5000}
+        type='INTERSTITIAL'
         eventImpressionViewable={(e) => console.log(e.slot)}
         eventSlotOnload={(e) => console.log(e.slot)}
         eventSlotRenderEnded={(e) => console.log(e.slot)}
@@ -97,7 +98,7 @@ Name used in div id
 
 #### `size`
 
-Size is defined by single, multi, fluid or responsive. See more information [Ad sizes - Google Developers ](https://developers.google.com/publisher-tag/guides/ad-sizes).
+Size is defined by single, multi, fluid or responsive. See more information at [Ad sizes - Google Developers ](https://developers.google.com/publisher-tag/guides/ad-sizes).
 
 - **type:** SingleSize | MultiSize | FluidSize | ResponsiveSize
 - **required:** true
@@ -121,6 +122,14 @@ The prop is set in **milliseconds**.
 
 - **type:** number | string
 - **required:** false
+
+#### `type`
+
+Define Out-of-page formats supported by Google Tag Manger. See more information at [Enum Types - Google Developers](https://developers.google.com/publisher-tag/reference#googletag.enums.outofpageformat).
+
+- **type:** string
+- **required:** false
+- **value:** 'INTERSTITIAL' | 'TOP_ANCHOR' | 'BOTTOM_ANCHOR' | undefined
 
 #### `eventSlotOnload`
 
