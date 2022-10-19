@@ -1,8 +1,29 @@
-# react-ad-manager
+<div align="center">
+  <h1>
+    <br/>
+    <br/>
+    📮 + ⚛️
+    <br />
+    react-ad-manager
+    <br />
+    <br />
+    <br />
+    <br />
+  </h1>
+  <div>
+    <br />
+    A React component for Google Ad Manager, created to serve Ads on the 🖖🏻 Jovem Nerd website (https://jovemnerd.com.br).
+    <br />
+    <br />
+  
+[![Package Version](https://img.shields.io/npm/v/react-ad-manager?label=%20&style=for-the-badge)](https://www.npmjs.com/package/react-ad-manager)
+[![Package Monthly Downloads](https://img.shields.io/npm/dm/react-ad-manager?color=blue&label=%20&style=for-the-badge)](https://www.npmjs.com/package/react-ad-manager)
+[![Docs](https://img.shields.io/badge/-Docs-blue.svg?style=for-the-badge)](https://github.com/tomattone/react-ad-manager)
 
-![react-ad-manager](https://user-images.githubusercontent.com/2035911/188284142-9d9ae304-0280-46f2-99f9-1d2fc3d0222a.png)
-
-A React component for Google Ad Manager, created to serve Ads on the [🖖🏻 Jovem Nerd website](https://jovemnerd.com.br).
+  </div>
+  <br />
+  <br />
+</div>
 
 <br />
 
