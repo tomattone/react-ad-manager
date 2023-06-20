@@ -108,7 +108,7 @@ const Ad: React.FC<AdType> = ({
   }
 
   const setTargeting = () => {
-    target.forEach((el: any) => googletag.pubads().setTargeting(el[0], el[1]))
+    target.forEach((el: any) => adSlot.setTargeting(el[0], el[1]))
   }
 
   const generateSize = () => {
@@ -134,7 +134,7 @@ const Ad: React.FC<AdType> = ({
     )
       return
     let mapping = googletag.sizeMapping()
-    internalSize.forEach((el) => (mapping = mapping.addSize(el[0], el[1])))
+    internalSize.forEach(el => (mapping = mapping.addSize(el[0], el[1])))
     mapping = mapping.build()
     adSlot.defineSizeMapping(mapping)
   }
