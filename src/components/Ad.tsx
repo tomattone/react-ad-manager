@@ -83,15 +83,28 @@ const Ad: React.FC<AdType> = ({
     })
 
     if (eventSlotRenderEnded)
-      googletag
-        .pubads()
-        .addEventListener('slotRenderEnded', eventSlotRenderEnded)
+      googletag.pubads().addEventListener('slotRenderEnded', (event: any) => {
+        if (event.slot === targetSlot) {
+          if (eventSlotRenderEnded) eventSlotRenderEnded(event)
+          if (refreshTimer) impressionViewable(event)
+        }
+      })
+
     if (eventSlotRequested)
-      googletag.pubads().addEventListener('slotRequested', eventSlotRequested)
+      googletag.pubads().addEventListener('eventSlotRequested', (event: any) => {
+        if (event.slot === targetSlot) {
+          if (eventSlotRequested) eventSlotRequested(event)
+          if (refreshTimer) impressionViewable(event)
+        }
+      })
+
     if (eventSlotResponseReceived)
-      googletag
-        .pubads()
-        .addEventListener('slotResponseReceived', eventSlotResponseReceived)
+      googletag.pubads().addEventListener('eventSlotResponseReceived', (event: any) => {
+        if (event.slot === targetSlot) {
+          if (eventSlotResponseReceived) eventSlotResponseReceived(event)
+          if (refreshTimer) impressionViewable(event)
+        }
+      })
   }
 
   const setTargeting = () => {
