@@ -1,6 +1,6 @@
 {
   "name": "react-ad-manager",
-  "version": "1.1.4",
+  "version": "1.1.6",
   "description": "A React component for Google Ad Manager",
   "author": "Armando Tomazzoni Junior",
   "license": "MIT",
@@ -17,19 +17,19 @@
     "publish": "rollup -c && npm publish"
   },
   "devDependencies": {
-    "@types/react": "^16.3.13",
-    "@types/react-dom": "^16.0.5",
-    "@typescript-eslint/eslint-plugin": "^4.28.1",
-    "@typescript-eslint/parser": "^4.28.1",
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "^6.7.0",
+    "@typescript-eslint/parser": "^6.7.0",
     "babel-core": "^6.26.3",
     "babel-runtime": "^6.26.0",
-    "eslint": "^7.29.0",
-    "eslint-plugin-react": "^7.24.0",
-    "gitmoji-cli": "^3.3.1",
-    "rollup": "^1.29.0",
-    "rollup-plugin-sass": "^0.9.0",
-    "rollup-plugin-typescript2": "^0.25.3",
-    "typescript": "^2.8.3"
+    "eslint": "^8.49.0",
+    "eslint-plugin-react": "^7.33.2",
+    "gitmoji-cli": "^8.5.0",
+    "rollup": "^3.29.1",
+    "rollup-plugin-sass": "^1.12.20",
+    "rollup-plugin-typescript2": "^0.35.0",
+    "typescript": "^5.2.2"
   },
   "files": [
     "dist"
