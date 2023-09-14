@@ -14,7 +14,7 @@
     "build": "rollup -c --bundleConfigAsCjs",
     "start": "rollup -c -w --bundleConfigAsCjs",
     "commit": "gitmoji -c",
-    "publish": "rollup -c && npm publish --bundleConfigAsCjs"
+    "publish": "rollup -c --bundleConfigAsCjs && npm publish"
   },
   "devDependencies": {
     "@types/react": "^18.2.21",
