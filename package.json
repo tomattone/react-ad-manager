@@ -1,19 +1,18 @@
 {
   "name": "react-ad-manager",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "A React component for Google Ad Manager",
   "author": "Armando Tomazzoni Junior",
   "license": "MIT",
   "repository": "tomattone/react-ad-manager",
-  "type": "module",
   "main": "dist/index.js",
   "engines": {
     "node": ">=8",
     "npm": ">=5"
   },
   "scripts": {
-    "build": "rollup -c",
-    "start": "rollup -c -w",
+    "build": "rollup -c --bundleConfigAsCjs",
+    "start": "rollup -c -w --bundleConfigAsCjs",
     "commit": "gitmoji -c",
     "publish": "rollup -c && npm publish"
   },

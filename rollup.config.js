@@ -1,6 +1,7 @@
 import typescript from 'rollup-plugin-typescript2'
 
-import packageJSON from './package.json' assert { type: 'json' }
+import packageJSON from './package.json'
+// import packageJSON from './package.json' assert { type: 'json' }
 
 export default {
   input: 'src/index.ts',
