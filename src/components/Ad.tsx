@@ -91,20 +91,24 @@ const Ad: React.FC<AdType> = ({
       })
 
     if (eventSlotRequested)
-      googletag.pubads().addEventListener('eventSlotRequested', (event: any) => {
-        if (event.slot === targetSlot) {
-          if (eventSlotRequested) eventSlotRequested(event)
-          if (refreshTimer) impressionViewable(event)
-        }
-      })
+      googletag
+        .pubads()
+        .addEventListener('eventSlotRequested', (event: any) => {
+          if (event.slot === targetSlot) {
+            if (eventSlotRequested) eventSlotRequested(event)
+            if (refreshTimer) impressionViewable(event)
+          }
+        })
 
     if (eventSlotResponseReceived)
-      googletag.pubads().addEventListener('eventSlotResponseReceived', (event: any) => {
-        if (event.slot === targetSlot) {
-          if (eventSlotResponseReceived) eventSlotResponseReceived(event)
-          if (refreshTimer) impressionViewable(event)
-        }
-      })
+      googletag
+        .pubads()
+        .addEventListener('eventSlotResponseReceived', (event: any) => {
+          if (event.slot === targetSlot) {
+            if (eventSlotResponseReceived) eventSlotResponseReceived(event)
+            if (refreshTimer) impressionViewable(event)
+          }
+        })
   }
 
   const setTargeting = () => {
@@ -121,7 +125,7 @@ const Ad: React.FC<AdType> = ({
     )
       return size
 
-    return size[0][1]
+    return internalSize.map((el) => [el[0], el[1]])
   }
 
   const mappingSize = () => {
@@ -134,7 +138,7 @@ const Ad: React.FC<AdType> = ({
     )
       return
     let mapping = googletag.sizeMapping()
-    internalSize.forEach(el => (mapping = mapping.addSize(el[0], el[1])))
+    internalSize.forEach((el) => (mapping = mapping.addSize(el[0], el[1])))
     mapping = mapping.build()
     adSlot.defineSizeMapping(mapping)
   }
