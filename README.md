@@ -1,4 +1,4 @@
-<div align="center">
+<div align='center'>
   <h1>
     <br/>
     <br/>
@@ -27,6 +27,12 @@
 
 <br />
 
+## Demo
+
+[See demo here](https://playcode.io/1595092)
+
+<br />
+
 ## Installation
 
 Install the library using your favorite package manager:
@@ -48,10 +54,10 @@ or using:
 First add the Google Publisher Tags script on your application
 
 ```js
-    import { AdScript } from react-ad-manager
-    <head>
-        <AdScript />
-    </head>
+import { AdScript } from 'react-ad-manager'
+;<head>
+  <AdScript />
+</head>
 ```
 
 or using:
@@ -71,8 +77,8 @@ then, create the Ad component for define ad slot
     import { Ad } from react-ad-manager
 
     <Ad
-        adUnit="/6355419/Travel/Europe"
-        name="div-name"
+        adUnit='/6355419/Travel/Europe'
+        name='div-name'
         size={[300, 250]}
     />
 ```
@@ -85,8 +91,8 @@ then, create the Ad component for define ad slot
     import { Ad } from react-ad-manager
 
     <Ad
-        adUnit="/6355419/Travel/Europe"
-        name="div-name"
+        adUnit='/6355419/Travel/Europe'
+        name='div-name'
         size={[
             [[1024, 768], [[750, 200], [728, 90]]],
             [[640, 480], [[300, 250]]],
