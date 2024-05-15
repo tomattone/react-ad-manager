@@ -55,6 +55,7 @@ First add the Google Publisher Tags script on your application
 
 ```js
 import { AdScript } from 'react-ad-manager'
+
 <head>
   <AdScript />
 </head>
