@@ -23,7 +23,7 @@ export type AdType = {
   name?: string
   size?: AdSizeType
   target?: TargetArrayType
-  type?: 'INTERSTITIAL' | 'TOP_ANCHOR' | 'BOTTOM_ANCHOR'
+  type?: 'INTERSTITIAL' | 'TOP_ANCHOR' | 'BOTTOM_ANCHOR' | 'CUSTOM'
   refreshTimer?: number | string
   eventImpressionViewable?: any
   eventSlotOnload?: any

@@ -154,9 +154,11 @@ The prop is set in **milliseconds**.
 
 Define Out-of-page formats supported by Google Tag Manger. See more information at [Enum Types - Google Developers](https://developers.google.com/publisher-tag/reference#googletag.enums.outofpageformat).
 
+For custom out-of-page ad slot use the `CUSTOM` value combined with the `name` Ad Prop. See more information about the [defineOutOfPageSlot](https://developers.google.com/publisher-tag/reference#googletag.defineOutOfPageSlot)
+
 - **type:** string
 - **required:** false
-- **value:** 'INTERSTITIAL' | 'TOP_ANCHOR' | 'BOTTOM_ANCHOR' | undefined
+- **value:** 'INTERSTITIAL' | 'TOP_ANCHOR' | 'BOTTOM_ANCHOR' | 'CUSTOM' | undefined
 
 #### `eventSlotOnload`
 
