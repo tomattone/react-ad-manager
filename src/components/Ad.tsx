@@ -44,10 +44,17 @@ const Ad: React.FC<AdType> = ({
 
   const displayEspecialAd = () => {
     googletag.cmd.push(() => {
-      adSlot = googletag.defineOutOfPageSlot(
-        `${variables.networkCode.get()}${adUnit}`,
-        googletag.enums.OutOfPageFormat[type]
-      )
+      if (type === 'CUSTOM' && name) {
+        adSlot = googletag.defineOutOfPageSlot(
+          `${variables.networkCode.get()}${adUnit}`,
+          name
+        )
+      } else {
+        adSlot = googletag.defineOutOfPageSlot(
+          `${variables.networkCode.get()}${adUnit}`,
+          googletag.enums.OutOfPageFormat[type]
+        )
+      }
       if (adSlot) {
         adSlot.setTargeting('type', type)
         adSlot.addService(googletag.pubads())
@@ -160,7 +167,7 @@ const Ad: React.FC<AdType> = ({
     }
   }, [])
 
-  if (type) return null
+  if (type && type !== 'CUSTOM') return null
 
   return <div id={name}></div>
 }
